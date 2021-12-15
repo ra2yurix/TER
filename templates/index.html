@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <link rel="stylesheet" href="../static/css/base.css" />
+  <div class="main-search">
+    <h1>Discover A Movie</h1>
+    <form action="/?" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label for="title"> Movie Title:</label>
+      <input id="title" type="checkbox" value="0" name="search" checked="checked"/>
+      <label for="overview">Movie Overview: </label>
+      <input id="overview" type="checkbox" value="1" name="search" checked="checked"/>
+      <label for="actor">Movie Actor: </label>
+      <input id="actor" type="checkbox" value="2" name="search" checked="checked"/>
+      <br>
+      <input id="search_text" type="text" name="search_text" value="{{search_text}}">
+      <br>
+      <label for="img_box">Choose a file</label>
+      <div class="pic_search" style="display: none" >
+
+        <input id="img_box" type="file" name="uploadPicture">
+
+      </div>
+      <br>
+      <button class="btn btn-default" type="submit" value="Search"> <span class="glyphicon glyphicon-search"></span> Search</button>
+    </form>
+
+  </div>
+
+
+  {% if error %}
+  <div class="error-block">
+    <h4>{{ message }}</h4>
+  </div>
+  {% endif %}
+  {% block oumar %} {% endblock oumar%}
+  {% block crawl %} {% endblock crawl%}
+  {% if correction %}
+  <div class="suggested-corrections">
+    <h4>Did you mean <a href="/?search_text={{suggested}}{% for field in search_field %}&search_field={{field}}{% endfor %}">{{suggested}}</a>?</h4>
+  </div>
+  {% endif %}
+
+  {% if hits %}
+  <div class="time-taken">
+    <h5>{{number}} results found in {{elapsed}} seconds</h5>
+  </div>
+  <div class="row">
+  <div class="search-filters col-lg-3">
+    <form action="/filter" method="get">
+      <input type="hidden" value="{{ search_text }}" name="search_text">
+      {% for field in search %}
+      <input type="hidden" value="{{ field }}" name="search">
+      {% endfor %}
+      {% for res in results %}
+      <input  type="hidden" value="{{res}}" name = "result">
+      {% endfor %}
+
+
+      <label for="year-slider">Filter by year interval:</label><br/>
+      <b>1900</b>
+
+      <input id="year-slider" type="text" class="span2" style="width:60%" name="year" value=""
+                                              data-slider-min="1900" data-slider-max="2020" data-slider-step="2"
+                                              data-slider-value="[{{ year }}]"/>
+      <b>2020</b>
+      <br/>
+      <br/>
+
+      <label for="rating-slider">Filter by Rating: </label><br/>
+      <b>0</b>
+      <input id="rating-slider" style="width:70%" type="text" class="span2" name="rating" value=""
+       data-slider-min="1" data-slider-max="10" data-slider-step="1"
+       data-slider-value="[{{ rating }}]"/>
+      <b>10</b>
+      <br/>
+      <br/>
+      <label for="multi_genre">Filter by genres: </label><br/>
+        <div id="multi_genre">
+        <input id="Drama" type="checkbox" value="Drama" name="multi_genre" />
+        <label for="Drama">Drama </label>
+        <input id="Horror" type="checkbox" value="Horror" name="multi_genre" />
+        <label for="Horror">Horror </label>
+        <br/>
+        <input id="Science Fiction" type="checkbox" value="Scienc" name="multi_genre" />
+        <label for="Science Fiction">Science Fiction </label>
+        <input id="War" type="checkbox" value="War" name="multi_genre" />
+        <label for="War">War </label>
+          <br/>
+        <input id="Action" type="checkbox" value="Action" name="multi_genre" />
+        <label for="Action">Action </label>
+        <input id="Thriller" type="checkbox" value="Thriller" name="multi_genre" />
+        <label for="Thriller">Thriller </label>
+        <input id="Crime" type="checkbox" value="Crime" name="multi_genre" />
+        <label for="Crime">Crime </label>
+          <br/>
+        <input id="Romance" type="checkbox" value="Romance" name="multi_genre" />
+        <label for="Romance">Romance</label>
+        <input id="History" type="checkbox" value="History" name="multi_genre" />
+        <label for="History">History</label>
+      </div>
+      <br/>
+      <br/>
+      <div>
+      </div>
+      <button class="btn btn-default" type="submit" value="Search"> <span class="glyphicon glyphicon-search"></span> Refine </button>
+    </form>
+  </div>
+  <div class="col-lg-9">
+    {% for hit in hits %}
+    <div class="search-result-item">
+      <div class="row">
+        <div class="col-xs-2">
+          <img alt="Poster not available" src="http://image.tmdb.org/t/p/w780/{{hit.poster_path }}" height="200px">
+        </div>
+        <div class="col-xs-9">
+          <form action="/show" method="POST">
+            {% csrf_token %}
+            <input type="hidden" value="{{hit.title}}" name="title"><span>{{hit.genres}}</span>
+            <input type="hidden" value="{{hit.overview}}" name="overview">
+            <input type="hidden" value="{{hit.poster_path}}" name="poster_path">
+            <input type="hidden" value="{{hit.imdb_id}}" name="imdb_id">
+          <h3 class="hit-title"><input type="submit" class="movie-title" value="{{ hit.title }}" ></h3>
+          </form>
+          <div class="row">
+            <div class="col-xs-2">
+              <h5 class="hit-voting"><b>Ratings: </b>{{ hit.vote_average }} </h5>
+            </div>
+            <div class="col-xs-7">
+              <h5 class="hit-release_date"><b>Release date: </b>{{ hit.release_date }} </h5>
+            </div>
+          </div>
+          <p class="hit-overview">{{ hit.overview }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+    </ul>
+    </nav>
+    </div>
+  </div>
+{% endif %}
+{% if  number == 0 or correction %}
+<!--<div class="time-taken">-->
+<!--  <form action="/crawl">-->
+<!--    {% for field in search_field %}-->
+<!--    <input type="hidden" value="{{ field }}" name="search_field">-->
+<!--    {% endfor %}-->
+<!--    <input type="hidden" value="{{ search_text }}" name="search_text">-->
+<!--    <h5>Sorry could not find anything...<input type="submit" class="suggested-spelling" value="crawl" ></h5>-->
+<!--  </form>-->
+<!--</div>-->
+
+<!-- <div class="oumar_no">
+  <form action="/oumarsaysno">
+
+    <h5>Sorry could not find anything</h5>
+  </form>
+</div> -->
+
+{% endif %}
+{% endblock content %}
+
+
