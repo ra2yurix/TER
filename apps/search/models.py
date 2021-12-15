@@ -1,5 +1,4 @@
-from django.db import models
-from pymongo import MongoClient, TEXT
+from pymongo import MongoClient
 
 
 class SearchEngine:
@@ -8,17 +7,20 @@ class SearchEngine:
         self.db = self.client.TER
         self.collection = self.db.movies
 
-    def text_search(self, text):
-        return self.collection.find({
+    def text_query(self, text):
+        result = []
+        for res in self.collection.find({
             "$or": [
                 {"title": {"$regex": text, "$options": "i"}},
                 {"original_title": {"$regex": text, "$options": "i"}},
                 {"overview": {"$regex": text, "$options": "i"}},
-                {"release_date": {"$regex": text, "$options": "i"}},
-            ]})
+                {"release_date": {"$regex": text, "$options": "i"}}]}):
+            result.append(res)
+        return result
 
 
+# test
 if __name__ == "__main__":
-    a = SearchEngine()
-    for i in a.text_search("father"):
-        print(i)
+    se = SearchEngine()
+    a=se.text_query("father")
+    print(a[0]["poster_path"])
