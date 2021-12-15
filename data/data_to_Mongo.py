@@ -1,13 +1,12 @@
-from pymongo import MongoClient
 import ast
 from pathlib import Path
+from pymongo import MongoClient
 
 MOVIES_DIR = Path.cwd().joinpath('movies')
 COMMENTS_DIR = Path.cwd().joinpath('comments')
 
-host = '127.0.0.1'  # or localhost
-port = 27017
-client = MongoClient(host, port)
+
+client = MongoClient('localhost', 27017)
 db = client.TER
 
 
@@ -15,7 +14,9 @@ def movies_to_mongo():
     for path in MOVIES_DIR.iterdir():
         f = open(path)
         movie = ast.literal_eval(f.read())
-        db.movies.insert_one(movie)
+        db.movies.find_one_and_update({'title': movie['title']},
+                                      {'$set': movie},
+                                      upsert=True)
 
 
 if __name__ == "__main__":
