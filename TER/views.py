@@ -1,6 +1,5 @@
 from django.shortcuts import render
-
+from django.shortcuts import HttpResponse
 
 def index(request):
-    context = {"hello": "Hello World!"}
-    return render(request, "index.html", {"search_text": ""})
+    return render(request, "index.html")

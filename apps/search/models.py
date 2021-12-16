@@ -22,5 +22,6 @@ class SearchEngine:
 # test
 if __name__ == "__main__":
     se = SearchEngine()
-    a=se.text_query("father")
-    print(a[0]["poster_path"])
+    a = se.text_query("father")
+    for i in a:
+        print(i)
