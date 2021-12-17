@@ -22,6 +22,5 @@ class SearchEngine:
 # test
 if __name__ == "__main__":
     se = SearchEngine()
-    a = se.text_query("father")
-    for i in a:
-        print(i)
+    for i in se.text_query("girl"):
+            print(i)

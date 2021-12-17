@@ -10,6 +10,7 @@ def movies_to_mongo():
     with open("movies.json") as f:
         movies = json.load(f)
         db.movies.insert_many(movies)
+    print("Done.")
 
 
 if __name__ == "__main__":
