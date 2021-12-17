@@ -22,13 +22,12 @@ def get_movies(number):
     movies = []
     while count < number:
         url = "https://api.themoviedb.org/3/movie/" + str(movie_ids[count]) + "?api_key=" + API_KEY
+
         try:
             movie = urllib.request.urlopen(url).read()
-
         except HTTPError:
             count += 1
             print("\r{0}...".format(count), end="")
-
         else:
             movie = json.loads(movie.decode('utf-8'))
             movies.append(movie)
@@ -51,4 +50,4 @@ def get_movies(number):
 
 
 if __name__ == '__main__':
-    get_movies(50000)
+    get_movies(10000)

@@ -11,7 +11,7 @@ search_engine = SearchEngine()
 def index(request):
     if request.method == "POST":
         start_time = time.time()
-        search_text = request.POST.get("search")
+        search_text = request.POST.get("search_text")
 
         result = search_engine.text_query(search_text)
 
@@ -22,4 +22,4 @@ def index(request):
                           {'error': False,  'search_text': search_text,
                            'elapsed': elapsed_time, 'number': 1, 'year': year, 'rating': rating, 'results': result})
 
-    return render(request, "results.html", {"search_text": ""})
+    return render(request, "index.html", {"search_text": ""})

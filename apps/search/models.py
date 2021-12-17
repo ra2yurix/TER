@@ -13,8 +13,7 @@ class SearchEngine:
             "$or": [
                 {"title": {"$regex": text, "$options": "i"}},
                 {"original_title": {"$regex": text, "$options": "i"}},
-                {"overview": {"$regex": text, "$options": "i"}},
-                {"release_date": {"$regex": text, "$options": "i"}}]}):
+                {"overview": {"$regex": text, "$options": "i"}}]}):
             result.append(res)
         return result
 
@@ -22,5 +21,5 @@ class SearchEngine:
 # test
 if __name__ == "__main__":
     se = SearchEngine()
-    for i in se.text_query("girl"):
-            print(i)
+    for i in se.text_query("star wars"):
+        print(i)
