@@ -10,7 +10,7 @@ import csv
 API_KEY = "26b756fc787e114571f0efbb2e62817a"
 
 
-def get_movies(number):
+def crawl_movies(number):
     movie_ids = []
     with open("movie_ids_12_15_2021.json", encoding="utf-8") as f:
         for line in f.readlines():
@@ -50,4 +50,4 @@ def get_movies(number):
 
 
 if __name__ == '__main__':
-    get_movies(10000)
+    crawl_movies(10000)
