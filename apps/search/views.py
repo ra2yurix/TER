@@ -10,6 +10,7 @@ search_engine = SearchEngine("mongo")
 
 def index(request):
     if request.GET.get("search_text"):
+
         return search(request)
     return render(request, "index.html")
 
