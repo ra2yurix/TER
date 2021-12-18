@@ -48,7 +48,6 @@ def crawl_movies(number):
         json.dump(details, f, indent=4)
 
     with open('movie_keywords.txt', 'w', newline='', encoding='utf-8') as f:
-        print(keywords_lines)
         f.writelines(keywords_lines)
 
     print("Done.")
