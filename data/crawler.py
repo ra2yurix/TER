@@ -10,39 +10,6 @@ import csv
 API_KEY = "26b756fc787e114571f0efbb2e62817a"
 
 
-# count = 0
-# keywords_line = ""
-# keywords_lines = []
-# while count < number:
-#     url_details = "https://api.themoviedb.org/3/movie/" + str(movie_ids[count]) + "?api_key=" + API_KEY
-#     url_keywords = "https://api.themoviedb.org/3/movie/" + str(movie_ids[count]) + "/keywords?api_key=" + API_KEY
-#     try:
-#         detail = urllib.request.urlopen(url_keywords).read()
-#     except Exception:
-#         count += 1
-#         print("\r{0}...".format(count), end="")
-#     else:
-#         movie = json.loads(movie.decode('utf-8'))
-#         movies.append(movie)
-#         count += 1
-#         print("\r{0}...".format(count), end="")
-#
-# url_details = "https://api.themoviedb.org/3/movie/497698?api_key=26b756fc787e114571f0efbb2e62817a"
-# url_keywords = "http://api.themoviedb.org/3/movie/497698/keywords?api_key=26b756fc787e114571f0efbb2e62817a"
-# movie = urllib.request.urlopen(url_keywords).read()
-# movie = json.loads(movie.decode('utf-8'))
-#
-# for i in movie:
-#     keywords_line = keywords_line + i["name"] + " "
-#
-# movie = urllib.request.urlopen(url_keywords).read()
-# movie = json.loads(movie.decode('utf-8'))["keywords"]
-#
-# for i in movie:
-#     keywords_line = keywords_line + i["name"] + " "
-# print(keywords_line)
-
-
 def crawl_movies(number):
     ids = []
     with open("movie_ids_12_17_2021.json", encoding="utf-8") as f:

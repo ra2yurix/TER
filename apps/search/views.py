@@ -5,7 +5,7 @@ import time
 from .models import SearchEngine
 
 IMAGE_BASE_PATH = "https://image.tmdb.org/t/p/w500"
-search_engine = SearchEngine("tmdb")
+search_engine = SearchEngine("mongo")
 
 
 def index(request):
