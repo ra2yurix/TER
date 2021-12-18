@@ -12,7 +12,7 @@ API_KEY = "26b756fc787e114571f0efbb2e62817a"
 
 def crawl_movies(number):
     ids = []
-    with open("movie_ids_12_17_2021.json", encoding="utf-8") as f:
+    with open("movie_ids_12_18_2021.json", encoding="utf-8") as f:
         for line in f.readlines():
             movie = json.loads(line)
             ids.append(movie["id"])
