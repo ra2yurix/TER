@@ -8,20 +8,20 @@ import csv
 # http://files.tmdb.org/p/exports/movie_ids_MM_DD_YYYY.json.gz
 
 API_KEY = "26b756fc787e114571f0efbb2e62817a"
+ids = []
 
 
-def crawl_movies(number):
-    ids = []
-    with open("movie_ids_12_18_2021.json", encoding="utf-8") as f:
+def create_ids():
+    with open("movie_ids_12_19_2021.json", encoding="utf-8") as f:
         for line in f.readlines():
             movie = json.loads(line)
             ids.append(movie["id"])
     random.shuffle(ids)
 
-    count = 0
-    details = []
-    keywords_lines = []
-    while count < number:
+
+def crawl_movies(begin, end):
+    count = begin
+    while count < end:
         url_details = "https://api.themoviedb.org/3/movie/" + str(ids[count]) + "?api_key=" + API_KEY
         url_keywords = "https://api.themoviedb.org/3/movie/" + str(ids[count]) + "/keywords?api_key=" + API_KEY
         try:
@@ -31,27 +31,31 @@ def crawl_movies(number):
             count += 1
             print("\r{0}...".format(count), end="")
         else:
-            detail = json.loads(detail.decode('utf-8'))
-            details.append(detail)
-            keywords_line = detail["title"]
-            for genre in detail["genres"]:
-                keywords_line = keywords_line + " " + genre["name"]
-            keywords = json.loads(keywords.decode('utf-8'))
-            for keyword in keywords["keywords"]:
-                keywords_line = keywords_line + " " + keyword["name"]
-            keywords_line = keywords_line + "\n"
-            keywords_lines.append(keywords_line)
-            count += 1
-            print("\r{0}...".format(count), end="")
-
-    with open('movie_details.json', 'w') as f:
-        json.dump(details, f, indent=4)
-
-    with open('movie_keywords.txt', 'w', newline='', encoding='utf-8') as f:
-        f.writelines(keywords_lines)
+            try:
+                detail = json.loads(detail.decode('utf-8'))
+            except Exception:
+                count += 1
+                print("\r{0}...".format(count), end="")
+            else:
+                keywords_line = detail["title"]
+                for genre in detail["genres"]:
+                    keywords_line = keywords_line + " " + genre["name"]
+                keywords = json.loads(keywords.decode('utf-8'))
+                for keyword in keywords["keywords"]:
+                    keywords_line = keywords_line + " " + keyword["name"]
+                keywords_line = keywords_line + "\n"
+                with open('movie_details.json', 'a+') as f:
+                    json.dump(detail, f, indent=4)
+                    f.write(',\n')
+                with open('movie_keywords.txt', 'a+', newline='', encoding='utf-8') as f:
+                    f.writelines(keywords_line)
+                count += 1
+                print("\r{0}...".format(count), end="")
 
     print("Done.")
 
 
 if __name__ == '__main__':
-    crawl_movies(100000)
+    create_ids()
+    for i in range(30):
+        crawl_movies(i*10000, (i+1)*10000)
