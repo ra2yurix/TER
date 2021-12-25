@@ -6,12 +6,12 @@ client = MongoClient("localhost", 27017)
 db = client.TER
 
 
-def movies_to_mongo():
+def movie_details_to_mongo():
     with open("movie_details.json") as f:
-        movies = json.load(f)
-        db.movies.insert_many(movies)
+        movie_details = json.load(f)
+        db.movies.insert_many(movie_details)
     print("Done.")
 
 
 if __name__ == "__main__":
-    movies_to_mongo()
+    movie_details_to_mongo()
