@@ -4,6 +4,7 @@ import random
 
 """preprocess_keywords() -> train_word2vec() -> preprocess_titles()"""
 
+
 def preprocess_keywords():
     with open("movie_keywords.txt", "r", encoding="utf-8") as f:
         keywords_lines = f.read().splitlines()
@@ -25,20 +26,20 @@ def preprocess_keywords():
         line = " ".join(line.split()) + "\n"
         new_keywords_lines.append(line)
 
-    # for detail in movie_details:
-    #     title = detail["title"].lower()
-    #     title = title.translate(str.maketrans("", "", string.punctuation))
-    #     title = " ".join(title.split()) + "\n"
-    #     new_keywords_lines.append(title)
+    for detail in movie_details:
+        title = detail["title"].lower()
+        title = title.translate(str.maketrans("", "", string.punctuation))
+        title = " ".join(title.split()) + "\n"
+        new_keywords_lines.append(title)
 
-    with open("movie_keywords_preprocessed.txt", "w", newline="", encoding="utf-8") as f1:
-        for _ in range(40):
+    with open("movie_keywords_preprocessed.txt", "w", newline="", encoding="utf-8") as f:
+        for _ in range(25):
             for i in range(len(new_keywords_lines)):
                 words = new_keywords_lines[i].split()
-                random.shuffle(words)
+                # random.shuffle(words)
                 new_keywords_lines[i] = " ".join(words) + "\n"
             random.shuffle(new_keywords_lines)
-            f1.writelines(new_keywords_lines)
+            f.writelines(new_keywords_lines)
     print("Done.")
 
 
@@ -56,5 +57,5 @@ def preprocess_titles():
 
 
 if __name__ == "__main__":
-    # preprocess_keywords()
-    preprocess_titles()
+    preprocess_keywords()
+    # preprocess_titles()
