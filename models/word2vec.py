@@ -13,6 +13,7 @@ def train_word2vec():
                      min_count=1, workers=multiprocessing.cpu_count())
     model.save(model_output)
     model.wv.save_word2vec_format(vector_output, binary=False)
+
     print("Done.")
 
 

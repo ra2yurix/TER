@@ -57,5 +57,5 @@ class SearchEngine:
 # test
 if __name__ == "__main__":
     se = SearchEngine()
-    for m in se.text_query("harry potter"):
+    for m in se.text_query("harry potter:"):
         print(m)
