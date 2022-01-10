@@ -12,7 +12,7 @@ ids = []
 
 
 def create_ids():
-    with open("movie_ids_12_19_2021.json", encoding="utf-8") as f:
+    with open("movie_ids_01_06_2022.json", encoding="utf-8") as f:
         for line in f.readlines():
             movie = json.loads(line)
             ids.append(movie["id"])
@@ -37,18 +37,12 @@ def crawl_movies(begin, end):
                 count += 1
                 print("\r{0}...".format(count), end="")
             else:
-                keywords_line = detail["title"]
-                for genre in detail["genres"]:
-                    keywords_line = keywords_line + " " + genre["name"]
                 keywords = json.loads(keywords.decode('utf-8'))
-                for keyword in keywords["keywords"]:
-                    keywords_line = keywords_line + " " + keyword["name"]
-                keywords_line = keywords_line + "\n"
+                del keywords["id"]
+                detail = dict(detail, **keywords)
                 with open('movie_details.json', 'a+') as f:
                     json.dump(detail, f, indent=4)
                     f.write(',\n')
-                with open('movie_keywords.txt', 'a+', newline='', encoding='utf-8') as f:
-                    f.writelines(keywords_line)
                 count += 1
                 print("\r{0}...".format(count), end="")
 
