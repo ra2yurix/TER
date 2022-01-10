@@ -20,7 +20,6 @@ def movie_keywords_to_mongo():
     print("Done.")
 
 
-
 if __name__ == "__main__":
     movie_details_to_mongo()
     movie_keywords_to_mongo()
