@@ -14,7 +14,7 @@ class SearchEngine:
     def __init__(self):
         self.client = MongoClient("localhost", 27017)
         self.db = self.client.TER
-        self.collection = self.db.movies
+        self.collection = self.db.movie_details
 
         self.model = KeyedVectors.load_word2vec_format("../../models/word2vec.vector")
         self.movie_ids_vectors = []
@@ -43,7 +43,7 @@ class SearchEngine:
         query = text.lower()
         query = query.translate(str.maketrans("", "", string.punctuation))
         query = query.split()
-        query_vector = np.mean(self.model[query],axis=0)
+        query_vector = np.mean(self.model[query], axis=0)
         cosines = []
         for id_vector in self.movie_ids_vectors:
             cosine = cosine_similarity(np.atleast_2d(query_vector), np.atleast_2d(id_vector[1]))
