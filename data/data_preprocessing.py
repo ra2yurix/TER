@@ -39,7 +39,7 @@ import random
 #                 new_keywords_lines[i] = " ".join(words) + "\n"
 #             random.shuffle(new_keywords_lines)
 #             f1.writelines(new_keywords_lines)
-#     print("Done.")
+# #     print("Done.")
 
 def preprocess_keywords():
     all_keywords = []
@@ -60,15 +60,17 @@ def preprocess_ids():
     all_ids = []
     with open("movie_details.json") as f:
         movie_details = json.load(f)
+
         for detail in movie_details:
             if len(detail["keywords"]) > 0:
                 ids = "M" + str(detail["id"])
                 for keyword in detail["keywords"]:
-                    ids = ids + " " + keyword["id"]
+                    ids = ids + " " + str(keyword["id"])
                 ids = ids + "\n"
                 all_ids.append(ids)
-    with open("")
-#
+    with open("movie_ids_preprocessed.txt", "w", newline="", encoding="utf-8") as f:
+        f.writelines(all_ids)
+    print("Done.")
 
 
 def preprocess_titles():
@@ -85,7 +87,6 @@ def preprocess_titles():
 
 
 if __name__ == "__main__":
-    preprocess_keywords()
+    # preprocess_keywords()
     # preprocess_titles()
-    a = []
-    print(len(a))
+    preprocess_ids()

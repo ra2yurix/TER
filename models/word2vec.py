@@ -5,7 +5,7 @@ import multiprocessing
 
 
 def train_word2vec():
-    keywords_dir = "../data/movie_keywords_preprocessed.txt"
+    keywords_dir = "../data/movie_ids_preprocessed.txt"
     model_output = "word2vec.model"
     vector_output = "word2vec.vector"
 
@@ -13,7 +13,6 @@ def train_word2vec():
                      min_count=1, workers=multiprocessing.cpu_count())
     model.save(model_output)
     model.wv.save_word2vec_format(vector_output, binary=False)
-
     print("Done.")
 
 
