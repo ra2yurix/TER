@@ -1,32 +1,39 @@
 from pymongo import MongoClient
-import json
 from gensim.models import KeyedVectors
 import numpy as np
 import string
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
-
-API_KEY = "26b756fc787e114571f0efbb2e62817a"
+from annoy import AnnoyIndex
 
 
 class SearchEngine:
     def __init__(self):
         self.client = MongoClient("localhost", 27017)
         self.db = self.client.TER
-        # self.collection = self.db.movie_details
 
-        self.bert_model = SentenceTransformer('bert-base-nli-mean-tokens')
-        self.word2vec_model = KeyedVectors.load_word2vec_format("../../models/word2vec.vector")
+        self.movie_keywords_index = AnnoyIndex(768, "angular")
+        self.movie_keywords_index.load("../../data/movie_keywords.ann")
 
-        self.all_keywords = []
-        self.keyword_ids = []
-        for keyword in self.db.movie_keywords.find():
-            self.all_keywords.append(keyword["name"])
-            self.keyword_ids.append(keyword["id"])
-        self.keyword_embeddings = self.bert_model.encode(self.all_keywords)
+        self.movie_ids_index = AnnoyIndex(100, "angular")
+        self.movie_ids_index.load("../../data/movie_ids.ann")
+
+        self.bert_model = SentenceTransformer("bert-base-nli-mean-tokens")
+        self.word2vec_model = KeyedVectors.load_word2vec_format("../../models/word2vec/word2vec.vector")
+
+        # self.movie_keyword_embeddings = []
+        # for keyword in self.db.movie_keywords.find():
+        #     embedding = self.bert_model.encode(keyword["name"])
+        #     self.movie_keyword_embeddings.append([keyword["id"], embedding])
+        # print("movie_keyword_embeddings ready.")
         #
-        self.movie_ids_embeddings = []
-        #
+        # self.movie_id_embeddings = []
+        # for detail in self.db.movie_details.find():
+        #     if len(detail["keywords"]) > 0:
+        #         embedding = self.word2vec_model["M" + str(detail["id"])]
+        #         self.movie_id_embeddings.append([detail["id"], embedding])
+        # print("movie_id_embeddings ready.")
+
         # with open("../../data/movie_titles_preprocessed.txt", "r", encoding="utf-8") as f:
         #     movie_ids_titles = f.read().splitlines()
         #     for id_title in movie_ids_titles:
@@ -54,48 +61,39 @@ class SearchEngine:
         # query = query.translate(str.maketrans("", "", string.punctuation))
         # query = query.split()
 
-        query_embedding = self.bert_model.encode(text)
-        ids_cosines = []
-        cosines = []
-        for i in range(len(self.keyword_embeddings)):
-            cosine = cosine_similarity(np.atleast_2d(query_embedding), np.atleast_2d(self.keyword_embeddings[i]))
-            ids_cosines.append([self.keyword_ids[i], cosine])
-        ids_cosines.sort(key=lambda k: k[1], reverse=True)
-        return ids_cosines[:10]
-        # query_vector = np.mean(self.model[query], axis=0)
-        # cosines = []
-        # for id_vector in self.movie_ids_vectors:
-        #     cosine = cosine_similarity(np.atleast_2d(query_vector), np.atleast_2d(id_vector[1]))
-        #     cosines.append([id_vector[0], cosine])
-        # cosines.sort(key=lambda k: k[1], reverse=True)
-        # for i in range(10):
-        #     results.append(self.collection.find_one({"id": int(cosines[i][0])}))
-        # return results
+        query_keywords = text.split(",")
+        query_keyword_vectors = self.bert_model.encode(query_keywords)
+
+        nearest_keyword_ids = []
+        for vector in query_keyword_vectors:
+            nearest_keyword_ids.append(str(self.movie_keywords_index.get_nns_by_vector(vector, 1)[0]))
+            # keyword_cosines = []
+            # for mke in self.movie_keyword_embeddings:
+            #     cosine = cosine_similarity(np.atleast_2d(qke), np.atleast_2d(mke[1]))
+            #     keyword_cosines.append([mke[0], cosine])
+            # keyword_cosines.sort(key=lambda k: k[1], reverse=True)
+            # top_keyword_ids.append(str(keyword_cosines[0][0]))
+            print(self.db.movie_keywords.find_one({"id": self.movie_keywords_index.get_nns_by_vector(vector, 1)[0]}))
+        print(nearest_keyword_ids)
+
+        nearest_keyword_ids_vector = np.mean(self.word2vec_model[nearest_keyword_ids], axis=0)
+        nearest_movie_ids = self.movie_ids_index.get_nns_by_vector(nearest_keyword_ids_vector, 10)
+        #
+        # movie_id_cosines = []
+        # for embedding in self.movie_id_embeddings:
+        #     cosine = cosine_similarity(np.atleast_2d(top_keyword_id_embedding), np.atleast_2d(embedding[1]))
+        #     movie_id_cosines.append([embedding[0], cosine])
+        # movie_id_cosines.sort(key=lambda k: k[1], reverse=True)
+        #
+        for i in nearest_movie_ids:
+            results.append(self.db.movie_details.find_one({"id": int(i)}))
+        return results
 
 
 # test
 if __name__ == "__main__":
-    # se = SearchEngine()
-    # # se.text_query("wizard magic school")
-    # for m in se.text_query("wizard magic school"):
-    #     print(m)
+    se = SearchEngine()
+    for m in se.text_query("super power,spider,marvel comics"):
+        print(m)
+    # se.text_query("super power,spider,marvel comic")
 
-
-    client = MongoClient("localhost", 27017)
-    c = client.TER.movie_keywords
-    print(c.find_one({"id":283250}))
-    # sen = [
-    #     "Harry Potter and the Philosopher's Stone",
-    #     "spider-man",
-    #     "marvel",
-    #     "magic"
-    # ]
-    # model = SentenceTransformer('bert-base-nli-mean-tokens')
-    # # Encoding:
-    # sentence_embeddings = model.encode(sen)
-    # a = cosine_similarity(
-    #     [sentence_embeddings[0]],
-    #     sentence_embeddings[1:]
-    # )
-    #
-    # print(a)
