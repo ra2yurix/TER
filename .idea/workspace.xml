@@ -2,22 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bef5c737-27c2-473b-83f6-221019e6d4a5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/TER.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TER.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/search/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/search/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data_preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/data_processing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data_processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/data_processing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/data_to_mongo.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/data_to_mongo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/movie_details.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/movie_details.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/movie_keywords.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/movie_keywords_50k.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/movie_keywords_preprocessed.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/cilin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/word2vec.model" beforeDir="false" afterPath="$PROJECT_DIR$/models/word2vec/word2vec.model" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/word2vec.model.syn1neg.npy" beforeDir="false" afterPath="$PROJECT_DIR$/models/word2vec/word2vec.model.syn1neg.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/word2vec.model.wv.vectors.npy" beforeDir="false" afterPath="$PROJECT_DIR$/models/word2vec/word2vec.model.wv.vectors.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/word2vec.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/word2vec/word2vec.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/movie_keywords.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/word2vec/word2vec.model" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/word2vec/word2vec.model.syn1neg.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/word2vec/word2vec.model.wv.vectors.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/word2vec/word2vec.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/word2vec/word2vec.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +45,7 @@
       <recent name="C:\Users\Tatsuto\ProgrammingProjects\TER\models\word2vec" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.models">
+  <component name="RunManager" selected="Python.data_to_mongo">
     <configuration name="data_processing (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="TER" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -73,7 +67,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="data_processing" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="data_to_mongo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="TER" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -85,7 +79,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\Tatsuto\ProgrammingProjects\TER\data\data_processing.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data/data_to_mongo.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -159,11 +153,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.data_to_mongo" />
         <item itemvalue="Python.models" />
         <item itemvalue="Python.data_processing (1)" />
         <item itemvalue="Python.word2vec (1)" />
         <item itemvalue="Python.word2vec" />
-        <item itemvalue="Python.data_processing" />
       </list>
     </recent_temporary>
   </component>

@@ -13,13 +13,13 @@ def movie_details_to_mongo():
     print("Done.")
 
 
-def movie_keywords_to_mongo():
-    with open("movie_keywords.json") as f:
-        movie_keywords = json.load(f)
-        db.movie_keywords.insert_many(movie_keywords)
+def all_keywords_to_mongo():
+    with open("all_keywords.json") as f:
+        all_keywords = json.load(f)
+        db.all_keywords.insert_many(all_keywords)
     print("Done.")
 
 
 if __name__ == "__main__":
     movie_details_to_mongo()
-    movie_keywords_to_mongo()
+    all_keywords_to_mongo()
