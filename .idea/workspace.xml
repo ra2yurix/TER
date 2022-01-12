@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bef5c737-27c2-473b-83f6-221019e6d4a5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/search/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/search/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data_processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/data_processing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data_to_mongo.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/data_to_mongo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/search/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/search/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/movie_details.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/movie_details.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/movie_keywords.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/word2vec/word2vec.model" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/word2vec/word2vec.model.syn1neg.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/word2vec/word2vec.model.wv.vectors.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/word2vec/word2vec.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/word2vec/word2vec.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +40,7 @@
       <recent name="C:\Users\Tatsuto\ProgrammingProjects\TER\models\word2vec" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.data_to_mongo">
+  <component name="RunManager" selected="Python.models">
     <configuration name="data_processing (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="TER" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -153,8 +148,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.data_to_mongo" />
         <item itemvalue="Python.models" />
+        <item itemvalue="Python.data_to_mongo" />
         <item itemvalue="Python.data_processing (1)" />
         <item itemvalue="Python.word2vec (1)" />
         <item itemvalue="Python.word2vec" />

@@ -1,6 +1,7 @@
 from pymongo import MongoClient
 from sentence_transformers import SentenceTransformer
 from annoy import AnnoyIndex
+from pathlib import Path
 
 
 class SearchEngine:
@@ -9,8 +10,10 @@ class SearchEngine:
         self.db = self.client.TER
         self.collection = self.db.movie_details
 
+        movie_keywords_index_path = Path(__file__).resolve().parent.parent.parent.joinpath(
+            "data/all_keywords_index.ann")
         self.movie_keywords_index = AnnoyIndex(768, "angular")
-        self.movie_keywords_index.load("../../data/all_keywords_index.ann")
+        self.movie_keywords_index.load(str(movie_keywords_index_path))
 
         self.bert_model = SentenceTransformer("bert-base-nli-mean-tokens")
 
@@ -61,4 +64,7 @@ if __name__ == "__main__":
     se = SearchEngine()
     for res in se.text_query("wizard,school,magic,friendship"):
         print(res)
-    # se.text_query("super power,spider,marvel comic")
+    # # se.text_query("super power,spider,marvel comic")
+    #
+    # for res in se.text_query("vietnam war, anti war, river, jungle"):
+    #     print(res)
