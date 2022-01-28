@@ -64,6 +64,9 @@ if __name__ == "__main__":
     se = SearchEngine()
     for res in se.text_query("wizard,school,magic,friendship"):
         print(res)
+        print("______")
+        print(res["genres"])
+        break
     # # se.text_query("super power,spider,marvel comic")
     #
     # for res in se.text_query("vietnam war, anti war, river, jungle"):
