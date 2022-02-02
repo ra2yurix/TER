@@ -9,6 +9,7 @@ class SearchEngine:
         self.client = MongoClient("localhost", 27017)
         self.db = self.client.TER
         self.collection = self.db.movie_details
+        self.kw_collection = self.db.all_keywords
 
         movie_keywords_index_path = Path(__file__).resolve().parent.parent.parent.joinpath(
             "data/all_keywords_index.ann")
@@ -46,7 +47,10 @@ class SearchEngine:
 
         nearest_keyword_ids = set()
         for vector in query_keyword_vectors:
-            nearest_keyword_ids = nearest_keyword_ids | set(self.movie_keywords_index.get_nns_by_vector(vector, 3))
+            nearest_keyword_ids = nearest_keyword_ids | set(self.movie_keywords_index.get_nns_by_vector(vector, 15))
+
+        for kw in nearest_keyword_ids:
+            print(self.kw_collection.find_one({"id": int(kw)}))
 
         common_keyword_nums = []
         for movie in self.movie_keyword_ids:
@@ -62,8 +66,8 @@ class SearchEngine:
 # test
 if __name__ == "__main__":
     se = SearchEngine()
-    for res in se.text_query("wizard,school,magic,friendship"):
-        print(res)
+    for res in se.text_query("magic, friendship"):
+        print(res['title'])
     # # se.text_query("super power,spider,marvel comic")
     #
     # for res in se.text_query("vietnam war, anti war, river, jungle"):

@@ -66,6 +66,7 @@ def all_keywords_embedding():
         all_keywords = json.load(f)
         for keyword in all_keywords:
             vector = bert_model.encode(keyword["name"])
+            print(vector)
             all_keywords_index.add_item(keyword["id"], vector)
     all_keywords_index.build(10)
     all_keywords_index.save("all_keywords_index.ann")
@@ -74,5 +75,5 @@ def all_keywords_embedding():
 
 
 if __name__ == "__main__":
-    all_keywords_output()
+    # all_keywords_output()
     all_keywords_embedding()
