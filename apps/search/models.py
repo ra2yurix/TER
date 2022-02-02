@@ -67,6 +67,7 @@ class SearchEngine:
 if __name__ == "__main__":
     se = SearchEngine()
     for res in se.text_query("magic, friendship"):
+
         print(res['title'])
     # # se.text_query("super power,spider,marvel comic")
     #
