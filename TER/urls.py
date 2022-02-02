@@ -17,6 +17,7 @@ from apps.search import views
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("search", views.index, name="search"),
-    # path("search/", include("apps.search.urls")),
+    path("search", views.search, name="search"),
+    # path("search", views.search, name="no")
+    # path("result", views.result)
 ]
