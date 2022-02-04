@@ -21,3 +21,4 @@ urlpatterns = [
     # path("search", views.search, name="no")
     # path("result", views.result)
 ]
+

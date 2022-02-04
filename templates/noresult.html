@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Search{% endblock %}
+{% block title %}NoResult{% endblock %}
 
 {% block content %}
     <form role="search" method="get" id="search_form" action="">
@@ -8,10 +8,8 @@
       <input type="submit" value="Search"/>
     </form>
     <p>You searched for: <strong>{{ search_text }}</strong></p>
-    <p>Found {{ movies|length }} movies.</p>
-    <ul>
-        <li>{{movies}}</li>
-    </ul>
+    <p>Found 0 movie.</p>
+    <p>Please searh a new one!</p>
     <p>77777</p>
 <hr>
 {% endblock %}
