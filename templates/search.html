@@ -2,18 +2,33 @@
 
 {% block title %}Search{% endblock %}
 
+{% block header %}
+<header>
+<!--设置页眉-->
+  <nav class="navbar navbar-custom navbar-fixed-top"> <!-- 设置nav元素为导航条组件；导航条组件为黑色主题；设置导航条组件固定在顶部-->
+    <div class="container-fluid"> <!-- 图片自适应屏幕宽度--->
+      <div class="navbar-header"> <!--指定div元素为导航条组件包裹品牌图标及切换按钮 --->
+        <a class="navbar-custom" href="http://127.0.0.1:8000"> <!-- 设置超链接-->
+            &nbsp iMovie
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+{% endblock %}
+
 {% block content %}
     <form role="search" method="get" id="search_form" action="">
-      <input name="search_text" type="search" placeholder="Want a new one?" required/>
-      <input type="submit" value="Search"/>
+        <div class="search">
+            <input name="search_text" type="search" class="searchTermH" placeholder="Discover a new?" required/>
+            <button type="submit" class="searchButton" value="Search"/></button>
+        </div>
     </form>
-<!--    <p>You searched for: <strong>{{ search_text }}</strong></p>-->
-<!--    <p>Found {{ movies|length }} movies.</p>-->
-<!--    <ul>-->
-<!--        <li>{{movies}}</li>-->
-<!--        <li>{{genre}}</li>-->
-<!--        <li>{{overviews}}</li>-->
-<!--    <p>77777</p>-->
+
+<hr>
+
+    <p>The most related {{ hits|length }} movies are in the list!</p>
+<hr>
   <div class="col-lg-9">
     {% for hit in hits %}
     <div class="search-result-item">
@@ -24,7 +39,9 @@
         <div class="col-xs-9">
           <form action="/show" method="POST">
             {% csrf_token %}
-            <input type="hidden" value="{{hit.title}}" name="title"><span>{{hit.genres}}</span>
+            {% for genre in hit.genres %}
+            <input type="hidden" value="{{hit.title}}" name="title"><span>{{genre.name}}</span>
+            {% endfor %}
             <input type="hidden" value="{{hit.overview}}" name="overview">
             <input type="hidden" value="{{hit.poster_path}}" name="poster_path">
             <input type="hidden" value="{{hit.imdb_id}}" name="imdb_id">
@@ -45,6 +62,7 @@
         </div>
       </div>
     </div>
+    <hr>
     {% endfor %}
 
     </ul>
