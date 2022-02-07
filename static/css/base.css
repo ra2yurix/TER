@@ -52,25 +52,26 @@ body {
 }
 
 .searchTermH {
-  width: 30%;
-  border: 3px solid #00B4CC;
+  width: 25%;
+  border: 3px solid #d9f1e3;
+  background: #d9f1e3;
   border-right: none;
   padding: 5px;
   height: 36px;
-  border-radius: 5px 0 0 5px;
+  border-radius: 18px 0 0 18px;
   outline: none;
-  color: #9DBFAF;
+  color: #00ad5f;
 }
 
 .searchButton {
-  width: 60px;
+  width: 100px;
   height: 36px;
-  border: 2px solid #00B4CC;
-  #background: #00B4CC;
-  background: url("../images/favicon.ico") no-repeat center;
+  border: 2px solid #00ad5f;
+  background: #00ad5f;
+  #background: url("../images/favicon.ico") no-repeat center;
   text-align: center;
   color: #fff;
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 18px 18px 0;
   cursor: pointer;
   font-size: 20px;
 }
