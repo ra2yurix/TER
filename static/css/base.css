@@ -63,6 +63,23 @@ body {
   color: #00ad5f;
 }
 
+.searchTermImg {
+    width: 30px;
+    height: 36px;
+    background: #d9f1e3;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -ms-flexbox;
+    cursor: pointer;
+    text-align: center;
+    padding: 0 10px;
+    fill: #222;
+}
+
 .searchButton {
   width: 100px;
   height: 36px;
