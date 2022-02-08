@@ -1,54 +1,54 @@
 
 body {
-  font-family: Arial Black, Gadget, sans-serif;
-  height: 100%;
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-image: url("../images/background.png");
+    font-family: Arial Black, Gadget, sans-serif;
+    height: 100%;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url("../images/background.png");
 }
 
 .classification-result {
-  background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.9);
 }
 
 .classification-recom {
-  background: rgba(255, 255, 255, 0.9);
-  margin-top: 50px;
+    background: rgba(255, 255, 255, 0.9);
+    margin-top: 50px;
 }
 
 .show-movie {
-  background: rgba(255, 255, 255, 0.9);
-  margin-top: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    margin-top: 40px;
 }
 
 .main-search {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 10px;
-  margin-top: 40px;
-  text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    margin-top: 40px;
+    text-align: center;
 }
 
 .search {
-  width: 100%;
-  position: relative;
-  display: flex;
+    width: 100%;
+    position: relative;
+    display: flex;
 }
 
 .searchTerm {
-  width: 100%;
-  border: 3px solid #00B4CC;
-  border-right: none;
-  padding: 5px;
-  height: 36px;
-  border-radius: 5px 0 0 5px;
-  outline: none;
-  color: #9DBFAF;
+    width: 100%;
+    border: 3px solid #00B4CC;
+    border-right: none;
+    padding: 5px;
+    height: 36px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #9DBFAF;
 }
 
-.searchTerm:focus{
-  color: #00B4CC;
+.searchTerm:focus {
+    color: #00B4CC;
 }
 
 .searchTermH {
@@ -77,118 +77,118 @@ body {
 }
 
 /*Resize the wrap to see the search bar change!*/
-.wrap{
-  width: 40%;
-  position: absolute;
-  margin-top: 250px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-image: url("../images/background.png");
+.wrap {
+    width: 40%;
+    position: absolute;
+    margin-top: 250px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url("../images/background.png");
 }
 
 
 #year-slider .slider-selection {
-	background: #BABABA;
+    background: #BABABA;
 }
 
 .time-taken {
-  background-color: rgba(255, 255, 255, 0.80);
-  margin-bottom: 10px;
-  padding: 1px;
+    background-color: rgba(255, 255, 255, 0.80);
+    margin-bottom: 10px;
+    padding: 1px;
 }
 
 ul li {
-  display: inline;
+    display: inline;
 }
 
 .suggested-spelling {
-  background:none!important;
-  color: blue;
-  border:none;
-  padding:0!important;
-  font: inherit;
-  border-bottom:1px solid #444;
-  cursor: pointer;
+    background: none !important;
+    color: blue;
+    border: none;
+    padding: 0 !important;
+    font: inherit;
+    border-bottom: 1px solid #444;
+    cursor: pointer;
 }
 
 .error-block {
-  background-color: rgba(255, 255, 255, 0.90);
-  margin: 10px;
-  padding: 10px;
-  margin: auto;
+    background-color: rgba(255, 255, 255, 0.90);
+    margin: 10px;
+    padding: 10px;
+    margin: auto;
 }
 
 .suggested-corrections {
-  background-color: rgba(255, 255, 255, 0.80);
-  padding: 10px;
-  margin: auto;
+    background-color: rgba(255, 255, 255, 0.80);
+    padding: 10px;
+    margin: auto;
 }
 
 .search-filters {
-  background-color: rgba(255, 255, 255, 0.90);
-  min-height: 100%;
-  margin-top: 15px;
-  padding: 30px;
+    background-color: rgba(255, 255, 255, 0.90);
+    min-height: 100%;
+    margin-top: 15px;
+    padding: 30px;
 }
 
 .search-result-item {
-  background-color: rgba(255, 255, 255, 0.90);
-  margin-top: 15px;
+    background-color: rgba(255, 255, 255, 0.90);
+    margin-top: 15px;
 }
 
 .suggested-crawl {
-  background-color: rgba(255, 255, 255, 0.80);
-  padding: 10px;
-  margin: auto;
+    background-color: rgba(255, 255, 255, 0.80);
+    padding: 10px;
+    margin: auto;
 }
 
 .movie-title {
-  background:none!important;
-  color: #333;
-  border:none;
-  padding:0!important;
-  font: inherit;
-  cursor: pointer;
-  }
+    background: none !important;
+    color: #333;
+    border: none;
+    padding: 0 !important;
+    font: inherit;
+    cursor: pointer;
+}
 
 .movie-title:hover {
-text-decoration: underline;
-  }
+    text-decoration: underline;
+}
 
-.DocumentList
-{
-    overflow-x:scroll;
+.DocumentList {
+    overflow-x: scroll;
     height: 200px;
-    width:100%;
+    width: 100%;
     padding: 0 15px;
 }
 
-.DocumentItem
-{
-    padding:0;
-    height:200px;
+.DocumentItem {
+    padding: 0;
+    height: 200px;
 }
 
 .list-inline {
-  white-space:nowrap;
+    white-space: nowrap;
 }
 
 .recommendations {
-  margin: 10px;
-  padding: 10px;
-  /*margin: 20 0 0 0px;*/
+    margin: 10px;
+    padding: 10px;
+    /*margin: 20 0 0 0px;*/
 }
-.pic_search{
-  /*position: fixed;*/
-  /*left: 50%;*/
-  text-align: center;
-}
-.oumar_no h2{
-  background-color:white;
-  color:red;
 
-  margin-bottom: 10px;
-  padding: 1px;
+.pic_search {
+    /*position: fixed;*/
+    /*left: 50%;*/
+    text-align: center;
+}
+
+.oumar_no h2 {
+    background-color: white;
+    color: red;
+
+    margin-bottom: 10px;
+    padding: 1px;
 }
 .styled {
     border: 0;
@@ -201,11 +201,11 @@ text-decoration: underline;
     border-radius: 10px;
     background-color: rgba(220, 0, 0, 1);
     background-image: linear-gradient(to top left,
-                                      rgba(0, 0, 0, .2),
-                                      rgba(0, 0, 0, .2) 30%,
-                                      rgba(0, 0, 0, 0));
+    rgba(0, 0, 0, .2),
+    rgba(0, 0, 0, .2) 30%,
+    rgba(0, 0, 0, 0));
     box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
-                inset -2px -2px 3px rgba(0, 0, 0, .6);
+    inset -2px -2px 3px rgba(0, 0, 0, .6);
 }
 
 .styled:hover {
@@ -214,7 +214,7 @@ text-decoration: underline;
 
 .styled:active {
     box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
-                inset 2px 2px 3px rgba(0, 0, 0, .6);
+    inset 2px 2px 3px rgba(0, 0, 0, .6);
 }
 
 .navbar-custom {

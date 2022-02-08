@@ -23,12 +23,7 @@ def search(request):
         results = search_engine.image_query(image)
     elif image is None:
         results = search_engine.text_query(search_text)
-    if results:
-        return render(request, "search.html", {'hits': results})
-
-
-def search_img(request):
-    fileImage = request.FILES.get('upload_image')
-    results = search_engine.image_query(fileImage)
+    else:
+        results = search_engine.text_image(search_text, image)
     if results:
         return render(request, "search.html", {'hits': results})

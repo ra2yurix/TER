@@ -75,5 +75,5 @@ def all_keywords_embedding():
 
 
 if __name__ == "__main__":
-    # all_keywords_output()
+    all_keywords_output()
     all_keywords_embedding()

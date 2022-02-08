@@ -4,70 +4,88 @@
 
 {% block header %}
 <header>
-<!--设置页眉-->
-  <nav class="navbar navbar-custom navbar-fixed-top"> <!-- 设置nav元素为导航条组件；导航条组件为黑色主题；设置导航条组件固定在顶部-->
-    <div class="container-fluid"> <!-- 图片自适应屏幕宽度--->
-      <div class="navbar-header"> <!--指定div元素为导航条组件包裹品牌图标及切换按钮 --->
-        <a class="navbar-custom" href="http://127.0.0.1:8000"> <!-- 设置超链接-->
-            &nbsp iMovie
-        </a>
-      </div>
-    </div>
-  </nav>
+    <!--设置页眉-->
+    <nav class="navbar navbar-custom navbar-fixed-top"> <!-- 设置nav元素为导航条组件；导航条组件为黑色主题；设置导航条组件固定在顶部-->
+        <div class="container-fluid"> <!-- 图片自适应屏幕宽度--->
+            <div class="navbar-header"> <!--指定div元素为导航条组件包裹品牌图标及切换按钮 --->
+                <a class="navbar-custom" href="http://127.0.0.1:8000"> <!-- 设置超链接-->
+                    &nbsp iMovie
+                </a>
+            </div>
+        </div>
+    </nav>
 </header>
 {% endblock %}
 
 {% block content %}
+<form role="search" method="post" id="search_form" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="search">
+        <input name="search_text" type="search" class="searchTermH" placeholder="Discover a new?"/>
+        <br>
+        <label for="img_box" class="searchTermImg">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" height="16"
+                 width="16" viewBox="0 0 1387 1024" style="width: 16px; height: 16px;">
+                <path d="M1143.443288 0H124.142466C55.604603 0 0.046758 55.557845 0.046758 124.095708v775.808584C0.046758 968.437479 55.604603 1024 124.142466 1024h1019.300822c68.537863 0 124.095708-55.562521 124.095707-124.095708V124.095708c0-68.537863-55.557845-124.095708-124.095707-124.095708z m41.394849 899.937023a41.362119 41.362119 0 0 1-41.362119 41.37147H124.105059a41.37147 41.37147 0 0 1-41.366794-41.362119v-226.668712c26.128365 11.58663 86.039379 37.088438 183.221187 53.809096 117.722594 20.260237 234.617571-14.027397 346.747909-60.144804 100.431489-33.272986 191.829333-49.881425 271.659251-44.326575 119.490046 8.308895 259.067324 69.786301 300.476201 97.728877v179.592767z m0-281.562594c-69.767598-32.052603-192.42316-72.591781-305.152-78.357041-124.558612-6.363763-208.386338 20.227507-314.54568 61.281023-103.536219 36.424475-169.726831 55.632658-276.540786 46.295087-87.68526-2.861589-171.662612-50.11989-205.866082-70.426886V124.058301a41.37147 41.37147 0 0 1 41.366795-41.362118h1019.370958a41.357443 41.357443 0 0 1 41.362119 41.362118V618.374429zM329.447452 229.866959c-67.789735 0-122.739726 54.949991-122.739726 122.739726s54.949991 122.739726 122.739726 122.739726 122.739726-54.949991 122.739726-122.739726-54.954667-122.739726-122.739726-122.739726z"></path>
+            </svg>
+        </label>
+        <div class="pic_search" style="display: none">
+            <input id="img_box" type="file" name="upload_image">
     <form role="search" method="get" id="search_form" action="">
         <div class="search">
             <input name="search_text" type="search" class="searchTermH" placeholder="Discover a new?" required/>
             <button type="submit" class="searchButton" value="Search"/>Search</button>
         </div>
-    </form>
+        <br>
+        <button type="submit" class="searchButton" value="Search"></button>
+    </div>
+</form>
 
 <hr>
 
-    <p>The most related {{ hits|length }} movies are in the list!</p>
+<p>The most related {{ hits|length }} movies are in the list!</p>
 <hr>
-  <div class="col-lg-9">
+<div class="col-lg-9">
     {% for hit in hits %}
     <div class="search-result-item">
-      <div class="row">
-        <div class="col-xs-2">
-          <img alt="Poster not available" src="http://image.tmdb.org/t/p/w780/{{hit.poster_path }}" height="200px">
-        </div>
-        <div class="col-xs-9">
-          <form action="/show" method="POST">
-            {% csrf_token %}
-            {% for genre in hit.genres %}
-            <input type="hidden" value="{{hit.title}}" name="title"><span>{{genre.name}}</span>
-            {% endfor %}
-            <input type="hidden" value="{{hit.overview}}" name="overview">
-            <input type="hidden" value="{{hit.poster_path}}" name="poster_path">
-            <input type="hidden" value="{{hit.imdb_id}}" name="imdb_id">
-<!--            <input type="hidden" value="{{ hit.title }}" name="movie-title"><span>{{hit.title}}</span>-->
-            <h3 class="hit-title"><input type="hidden" value="{{ hit.title }}" name="movie-title"><span>{{hit.title}}</span></h3>
-
-<!--          <h3 class="hit-title"><input type="submit" class="movie-title" value="{{ hit.title }}" ></h3>-->
-          </form>
-          <div class="row">
+        <div class="row">
             <div class="col-xs-2">
-              <h5 class="hit-voting"><b>Ratings: </b>{{ hit.vote_average }} </h5>
+                <img alt="Poster not available" src="http://image.tmdb.org/t/p/w780/{{hit.poster_path }}"
+                     height="200px">
             </div>
-            <div class="col-xs-7">
-              <h5 class="hit-release_date"><b>Release date: </b>{{ hit.release_date }} </h5>
+            <div class="col-xs-9">
+                <form action="/show" method="POST">
+                    {% csrf_token %}
+                    {% for genre in hit.genres %}
+                    <input type="hidden" value="{{hit.title}}" name="title"><span>{{genre.name}}</span>
+                    {% endfor %}
+                    <input type="hidden" value="{{hit.overview}}" name="overview">
+                    <input type="hidden" value="{{hit.poster_path}}" name="poster_path">
+                    <input type="hidden" value="{{hit.imdb_id}}" name="imdb_id">
+                    <!--            <input type="hidden" value="{{ hit.title }}" name="movie-title"><span>{{hit.title}}</span>-->
+                    <h3 class="hit-title"><input type="hidden" value="{{ hit.title }}" name="movie-title"><span>{{hit.title}}</span>
+                    </h3>
+
+                    <!--          <h3 class="hit-title"><input type="submit" class="movie-title" value="{{ hit.title }}" ></h3>-->
+                </form>
+                <div class="row">
+                    <div class="col-xs-2">
+                        <h5 class="hit-voting"><b>Ratings: </b>{{ hit.vote_average }} </h5>
+                    </div>
+                    <div class="col-xs-7">
+                        <h5 class="hit-release_date"><b>Release date: </b>{{ hit.release_date }} </h5>
+                    </div>
+                </div>
+                <p class="hit-overview">{{ hit.overview }}</p>
             </div>
-          </div>
-          <p class="hit-overview">{{ hit.overview }}</p>
         </div>
-      </div>
     </div>
     <hr>
     {% endfor %}
 
     </ul>
     </nav>
-    </div>
-  </div>
+</div>
+</div>
 <hr>
 {% endblock %}
