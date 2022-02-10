@@ -8,8 +8,6 @@ from tensorflow.keras.applications import ResNet50
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.resnet50 import preprocess_input, decode_predictions
 from PIL import Image
-import tensorflow as tf
-from tensorflow.python.keras.backend import set_session
 
 
 class Resnet50:
@@ -39,10 +37,6 @@ class Resnet50:
         input_tensor = Input((224, 224, 3))
         inputs = input_tensor
 
-        global graph, sess
-        graph = tf.compat.v1.get_default_graph()
-        sess = tf.Session(graph=graph)
-        set_session(sess)
         x = Lambda(preprocess_input)(inputs)  # the preprocess_input function varies depending on the pretrained model
         base_model = ResNet50(input_tensor=x, weights='imagenet', include_top=False)
         x = base_model(x)
@@ -58,10 +52,7 @@ class Resnet50:
             img = np.stack((img[:, :, 0],) * 3, axis=-1)
         img = np.expand_dims(img, axis=0)
         X_train.append(img)
-        with sess.as_default():
-            with graph.as_default():
-                set_session(sess)
-                img_feature = self.model.predict(X_train)
+        img_feature = self.model.predict(X_train)
 
         result = []
         k = 10
