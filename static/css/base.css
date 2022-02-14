@@ -90,7 +90,7 @@ body {
   color: #fff;
   border-radius: 0 18px 18px 0;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 /*Resize the wrap to see the search bar change!*/
@@ -235,7 +235,7 @@ ul li {
 }
 
 .navbar-custom {
-    background-color: #1A73E8 !important;
+    background-color: #00ad5f !important;
     font-size: 30px !important;
     color: #FFFFFF;
 }
